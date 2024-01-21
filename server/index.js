@@ -32,6 +32,7 @@ app.get("/", (req, res) => { res.send("Hello"); })
 
 //Send poll data as JSON to gain access to data on the client side
 app.get("/getPollData", (req, res) => {
+    const pollId = req.params.id;
     res.json(pollData);
 });
 
@@ -39,14 +40,24 @@ app.get("/getPollData", (req, res) => {
 let voteData = [];
 // Handle the submission of votes
 app.post('/submitVote', (req, res) => {
+
+    const response = {
+        voteData,
+        message: 'Vote submitted successfully',
+    };
+
     // Extract the selected option from the request body sent by the client
     const { selectedOption } = req.body;
     //Push selectedOption data to voteData array
     voteData.push(selectedOption);
-    res.status(200).send('Vote submitted successfully');
+    res.status(200).send(response);
 });
 
 //Get vote
+app.get('/getResult', (req, res) => {
+    res.send(voteData)
+
+});
 
 app.listen(3003, () => {
     console.log("running on port 3003");

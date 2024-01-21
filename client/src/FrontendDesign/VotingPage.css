@@ -1,0 +1,68 @@
+.votingPageContainer {
+    flex: 1;
+    background-image: linear-gradient(rgb(16, 2, 210), rgb(42, 41, 41));
+    min-height: 100vh;
+    text-align: center;
+    flex-direction: column;
+}
+
+.votingPagetitle {
+    font-size: 40px;
+    padding-top: 25px;
+    padding-bottom: 30px;
+    color: rgba(255, 255, 255, 0.742);
+}
+
+.votingPageSubHeader {
+    color: rgba(255, 255, 255, 0.742);
+    font-family: 'Sans-serif', 'Helvetica', sans-serif;
+    font-size: 25px;
+    padding-bottom: 7%;
+}
+
+h3 {
+    color: rgba(255, 255, 255, 0.742);
+}
+
+.votingOptions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.votingOptionsBox {
+    border: 1.5px;
+    border-radius: 5px;
+    border-color: white;
+    border-style: solid;
+    width: 45%;
+    /* Adjust as needed */
+    padding: 1%;
+    margin: 1%;
+    /* Adjust as needed */
+    justify-content: center;
+}
+
+.votingOptionsBox:hover {
+    background-image: linear-gradient(rgb(9, 0, 141), rgb(42, 41, 41));
+}
+
+.votingOptionsBox label {
+    font-size: 30px;
+    color: rgba(255, 255, 255, 0.851);
+}
+
+.submitButton {
+    margin-top: 2%;
+    padding: 0.5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    width: 30%;
+    border: 1.5px;
+    border-radius: 3px;
+    background-color: rgb(251, 244, 231);
+}
+
+.submitButton:hover {
+    background-color: rgba(248, 240, 226, 0.615);
+}
