@@ -1,22 +1,8 @@
-//create end points
-//send poll data
-//send votes
-
 const express = require('express');
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const app = express();
 
-// const mysql = require('mysql');
-
-// const mysql = require("mysql");
-
-// const db = mysql.createPool({
-//     host: 'localhost',
-//     user: 'root',
-//     password: 'password',
-//     database: 'votingSystemDB'
-// });
 const e = require('express');
 
 app.use(express.json())
@@ -28,6 +14,7 @@ app.use(cors({
 
 app.use(bodyParser.json());
 
+//Poll data 
 const pollData = {
     pollId: 1,
     pollName: 'Golden Boot Winner',
@@ -40,13 +27,26 @@ const pollData = {
     ],
 };
 
+// Root - sends a simple greeting
+app.get("/", (req, res) => { res.send("Hello"); })
 
-app.get("/", (req, res) => { res.send("hello badat"); })
-
+//Send poll data as JSON to gain access to data on the client side
 app.get("/getPollData", (req, res) => {
     res.json(pollData);
-})
+});
 
+// Initialise an empty array to store vote data
+let voteData = [];
+// Handle the submission of votes
+app.post('/submitVote', (req, res) => {
+    // Extract the selected option from the request body sent by the client
+    const { selectedOption } = req.body;
+    //Push selectedOption data to voteData array
+    voteData.push(selectedOption);
+    res.status(200).send('Vote submitted successfully');
+});
+
+//Get vote
 
 app.listen(3003, () => {
     console.log("running on port 3003");
