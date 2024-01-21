@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import "../FrontendDesign/Results.css"
 import Axios from 'axios';
 
 const Results = () => {
@@ -8,79 +8,89 @@ const Results = () => {
     const [dataOption3, setDataOption3] = useState(0);
     const [dataOption4, setDataOption4] = useState(0);
     const [finalData, setFinalData] = useState(0);
-    const [results, setResults] = useState([]);
 
     const getData = async () => {
-        Axios.get('http://localhost:3003/getResult')
-            .then((response) => {
-                if (response.status === 200) {
-                    console.log('Server Response:', response.data);
-                    setResults(response.data);
-                    countVotes()
-                }
-
-            })
-            .catch((error) => {
-                console.log("Unknown error", error);
-            });
+        try {
+            const response = await Axios.get('http://localhost:3003/getResult');
+            if (response.status === 200) {
+                countVotes(response.data);
+            }
+        } catch (error) {
+            console.log("Error fetching data:", error);
+        }
     };
 
-    function countVotes() {
-
+    function countVotes(data) {
         let countDataOptions1 = 0;
         let countDataOptions2 = 0;
         let countDataOptions3 = 0;
         let countDataOptions4 = 0;
 
-        for (let i = 0; i < results.length; i++) {
-            if (results[i] === 1) {
+
+
+
+        for (let i = 0; i < data.length; i++) {
+            if (data[i] === 1) {
                 countDataOptions1++;
             }
-            else if (results[i] === 2) {
+            else if (data[i] === 2) {
                 countDataOptions2++;
             }
-            else if (results[i] === 3) {
+            else if (data[i] === 3) {
                 countDataOptions3++;
             }
-            else if (results[i] === 4) {
+            else if (data[i] === 4) {
                 countDataOptions4++;
             }
         }
-        setDataOption1(countDataOptions1);
-        setDataOption2(countDataOptions2);
-        setDataOption3(countDataOptions3);
-        setDataOption4(countDataOptions4);
-        setFinalData(results.length);
-        console.log("The data in my count function " + countDataOptions1 + ' ' + countDataOptions2 + ' ' + countDataOptions3 + ' ' + countDataOptions4)
+        const percentageOption1 = Math.round((countDataOptions1 / data.length) * 100);
+        const percentageOption2 = Math.round((countDataOptions2 / data.length) * 100);
+        const percentageOption3 = Math.round((countDataOptions3 / data.length) * 100);
+        const percentageOption4 = Math.round((countDataOptions4 / data.length) * 100);
 
+        setDataOption1(percentageOption1);
+        setDataOption2(percentageOption2);
+        setDataOption3(percentageOption3);
+        setDataOption4(percentageOption4);
+        setFinalData(data.length);
+
+        console.log("The data in my count function: " + countDataOptions1 + ' ' + countDataOptions2 + ' ' + countDataOptions3 + ' ' + countDataOptions4);
     }
 
+
     useEffect(() => {
-        // console.log(dataOption1 + ' ' + dataOption2 + ' ' + dataOption3 + ' ' + dataOption4)
         getData();
-    }, []);
+    },);
 
 
     return (
-        <div>
+        <div className="resultsPageContainer">
             <header>
-                <h1>Results</h1>
+                <h1 className="resultsPageTitle">Thank you for your response</h1>
             </header>
 
             <main>
-                <p>{dataOption1}</p>
-                <p>{dataOption2}</p>
-                <p>{dataOption3}</p>
-                <p>{dataOption4}</p>
-                <p>{finalData}</p>
-                {/* <button onClick={countVotes}>click me</button> */}
+                <div className="result1">
+                    <h2>Erling Haaland: {dataOption1}%</h2>
+                </div>
+                <div className="result2">
+                    <h2>Mohamed Salah: {dataOption2}%</h2>
+                </div>
+                <div className="result3">
+                    <h2>Dominic Solanke: {dataOption3}%</h2>
+                </div>
+                <div className="result4">
+                    <h2>Son Heung-Min: {dataOption4}%</h2>
+                </div>
+                <div className="finalScore">
+                    <p>Total Votes: {finalData}</p>
+                </div>
             </main>
 
-            <footer>
-                <p>This is my footer</p>
+            <footer className="footerResultsContainer">
+                <p>Created by Adil Badat</p>
             </footer>
         </div>
     );
 };
-
 export default Results;

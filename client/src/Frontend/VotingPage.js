@@ -56,8 +56,7 @@ const VotingPage = () => {
     return (
         <div className="votingPageContainer">
             <header>
-                <h1 className="votingPagetitle"></h1>
-                <h2 className="votingPageSubHeader">Choose your winner!</h2>
+                <h1 className="votingPageSubHeader">Choose your winner!</h1>
             </header>
 
             <main className="votingPageMainContainer">

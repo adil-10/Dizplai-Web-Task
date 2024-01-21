@@ -1,0 +1,72 @@
+.resultsPageContainer {
+    flex: 1;
+    background-image: linear-gradient(rgb(16, 2, 210), rgb(42, 41, 41));
+    min-height: 100vh;
+    text-align: center;
+    flex-direction: column;
+}
+
+.resultsPageTitle {
+    color: rgba(255, 255, 255, 0.851);
+    font-family: 'Sans-serif', 'Helvetica', sans-serif;
+    font-size: 30px;
+    padding: 10px;
+    border-radius: 5px;
+    padding-top: 30px;
+}
+
+main {
+    margin-top: 20px;
+}
+
+.result1,
+.result2,
+.result3,
+.result4,
+.finalScore {
+    font-size: 15px;
+    font-family: 'Sans-serif', 'Verdana', sans-serif;
+    color: rgba(255, 255, 255, 0.851);
+    margin-left: 23%;
+    width: 50%;
+    border: 1px;
+    border-style: solid;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.finalScore {
+    font-size: 30px;
+}
+
+.footerResultsContainer {
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+
+    .resultsPageTitle {
+        font-size: 25px;
+    }
+
+    .result1,
+    .result2,
+    .result3,
+    .result4,
+    .finalScore {
+        font-size: 10px;
+        width: 50%;
+    }
+
+    .finalScore {
+        font-size: 20px;
+    }
+
+    .footerContainer {
+        margin-top: 20px;
+        padding-bottom: 10px;
+    }
+
+}

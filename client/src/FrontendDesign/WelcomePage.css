@@ -11,12 +11,13 @@
     padding-top: 25px;
     padding-bottom: 30px;
     color: rgba(255, 255, 255, 0.742);
+    font-family: 'Sans-serif', 'Helvetica', sans-serif;
 }
 
 .subHeader {
     color: rgba(255, 255, 255, 0.742);
     font-family: 'Sans-serif', 'Helvetica', sans-serif;
-    font-size: 25px;
+    font-size: 30px;
     padding-bottom: 7%;
 }
 
@@ -53,13 +54,8 @@ p {
 }
 
 .footerContainer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    color: white;
-    text-align: center;
-    padding: 10px;
-
+    margin-top: 20px;
+    padding-bottom: 10px;
 }
 
 @media (max-width: 768px) {
@@ -84,5 +80,6 @@ p {
 
     .footerContainer {
         margin-top: 20px;
+        padding-bottom: 10px;
     }
 }

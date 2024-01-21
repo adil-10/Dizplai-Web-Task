@@ -6,18 +6,12 @@
     flex-direction: column;
 }
 
-.votingPagetitle {
-    font-size: 40px;
-    padding-top: 25px;
-    padding-bottom: 30px;
-    color: rgba(255, 255, 255, 0.742);
-}
-
 .votingPageSubHeader {
     color: rgba(255, 255, 255, 0.742);
     font-family: 'Sans-serif', 'Helvetica', sans-serif;
-    font-size: 25px;
+    font-size: 30px;
     padding-bottom: 7%;
+    padding-top: 30px;
 }
 
 h3 {
@@ -36,10 +30,8 @@ h3 {
     border-color: white;
     border-style: solid;
     width: 45%;
-    /* Adjust as needed */
     padding: 1%;
     margin: 1%;
-    /* Adjust as needed */
     justify-content: center;
 }
 
@@ -65,4 +57,34 @@ h3 {
 
 .submitButton:hover {
     background-color: rgba(248, 240, 226, 0.615);
+}
+
+.footerContainer {
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+
+    .votingPageSubHeader {
+        font-size: 20px;
+        padding-bottom: 5%;
+    }
+
+    .submitButton {
+        width: 80%;
+    }
+
+    .votingOptionsBox {
+        width: 90%;
+    }
+
+    .submitButton {
+        width: 80%;
+    }
+
+    .footerContainer {
+        margin-top: 20px;
+        padding-bottom: 10px;
+    }
 }
