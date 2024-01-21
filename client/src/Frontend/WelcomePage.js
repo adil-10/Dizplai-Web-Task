@@ -12,6 +12,7 @@ const WelcomePage = () => {
         <div className="welcomePageContainer">
             <header>
                 <h1 className="title">Dizplai</h1>
+                <img className="image" src="football.jpeg" alt="football" />
                 <h2 className="subHeader">Who will win the ballon d'or 2024!</h2>
             </header>
 

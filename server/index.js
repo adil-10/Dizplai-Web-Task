@@ -40,23 +40,25 @@ app.get("/getPollData", (req, res) => {
 let voteData = [];
 // Handle the submission of votes
 app.post('/submitVote', (req, res) => {
-
     const response = {
         voteData,
         message: 'Vote submitted successfully',
     };
-
-    // Extract the selected option from the request body sent by the client
-    const { selectedOption } = req.body;
-    //Push selectedOption data to voteData array
-    voteData.push(selectedOption);
-    res.status(200).send(response);
+    try {
+        // Extract the selected option from the request body sent by the client
+        const { selectedOption } = req.body;
+        //Push selectedOption data to voteData array
+        voteData.push(selectedOption);
+        res.status(200).send(response);
+    }
+    catch (error) {
+        res.send(error);
+    }
 });
 
 //Get vote
 app.get('/getResult', (req, res) => {
     res.send(voteData)
-
 });
 
 app.listen(3003, () => {

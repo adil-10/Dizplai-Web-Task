@@ -14,11 +14,16 @@
     font-family: 'Sans-serif', 'Helvetica', sans-serif;
 }
 
+.image {
+    width: 10%;
+    height: 10%;
+}
+
 .subHeader {
     color: rgba(255, 255, 255, 0.742);
     font-family: 'Sans-serif', 'Helvetica', sans-serif;
     font-size: 30px;
-    padding-bottom: 7%;
+    padding-bottom: 3%;
 }
 
 p {

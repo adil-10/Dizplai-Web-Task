@@ -15,6 +15,9 @@ const Results = () => {
             if (response.status === 200) {
                 countVotes(response.data);
             }
+            else {
+                window.alert("Unexpected error: please try again later")
+            }
         } catch (error) {
             console.log("Error fetching data:", error);
         }
@@ -25,9 +28,6 @@ const Results = () => {
         let countDataOptions2 = 0;
         let countDataOptions3 = 0;
         let countDataOptions4 = 0;
-
-
-
 
         for (let i = 0; i < data.length; i++) {
             if (data[i] === 1) {
@@ -53,8 +53,6 @@ const Results = () => {
         setDataOption3(percentageOption3);
         setDataOption4(percentageOption4);
         setFinalData(data.length);
-
-        console.log("The data in my count function: " + countDataOptions1 + ' ' + countDataOptions2 + ' ' + countDataOptions3 + ' ' + countDataOptions4);
     }
 
 

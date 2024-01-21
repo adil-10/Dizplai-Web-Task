@@ -59,8 +59,8 @@ h3 {
     background-color: rgba(248, 240, 226, 0.615);
 }
 
-.footerContainer {
-    margin-top: 20px;
+.footerFooterContainer {
+    margin-top: 9%;
     padding-bottom: 10px;
 }
 
@@ -83,7 +83,7 @@ h3 {
         width: 80%;
     }
 
-    .footerContainer {
+    .footerFooterContainer {
         margin-top: 20px;
         padding-bottom: 10px;
     }

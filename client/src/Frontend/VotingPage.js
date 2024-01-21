@@ -20,6 +20,9 @@ const VotingPage = () => {
                 if (response.status === 200) {
                     setPollData(response.data);
                 }
+                else {
+                    window.alert("Unexpected error: please try again later")
+                }
             })
             .catch((error) => {
                 console.log("Unknown error", error);
@@ -39,9 +42,9 @@ const VotingPage = () => {
                 localStorage.setItem("id", JSON.stringify(response.data.voteData));
                 // If the vote is successfully submitted, navigate to the results page
                 toResultsPage();
-                console.log('success');
-            } else {
-                console.error('Failed to submit vote');
+            }
+            else {
+                console.error('Failed to submit vote: please try again');
             }
         } catch (error) {
             console.error('Error submitting vote', error);
@@ -49,8 +52,15 @@ const VotingPage = () => {
     };
 
     const handleSubmit = () => {
-        // Call the submitVote function with the selected option
-        submitVote(selectedOptions);
+        console.log(selectedOptions)
+        //If the selectedOptions array is empty
+        if (selectedOptions.length === 0) {
+            window.alert('Select an option')
+        }
+        else {
+            // Call the submitVote function with the selected option
+            submitVote(selectedOptions);
+        }
     };
 
     return (
@@ -81,7 +91,7 @@ const VotingPage = () => {
                 <button className="submitButton" id="submit" onClick={handleSubmit}>Submit</button>
             </main>
 
-            <footer className="footerContainer">
+            <footer className="footerFooterContainer">
                 <p>Created by Adil Badat</p>
             </footer>
         </div>
