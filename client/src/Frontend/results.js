@@ -1,19 +1,30 @@
+//Order results based on percentages
+
 import React, { useEffect, useState } from "react";
 import "../FrontendDesign/Results.css"
 import Axios from 'axios';
+import { countVotes } from './CountVotes';
 
 const Results = () => {
+    //Variables to store data
     const [dataOption1, setDataOption1] = useState(0);
     const [dataOption2, setDataOption2] = useState(0);
     const [dataOption3, setDataOption3] = useState(0);
     const [dataOption4, setDataOption4] = useState(0);
     const [finalData, setFinalData] = useState(0);
 
+    // Function to fetch data from the server
     const getData = async () => {
         try {
             const response = await Axios.get('http://localhost:3003/getResult');
             if (response.status === 200) {
-                countVotes(response.data);
+                // Call countVotes function to calculate percentages and update state
+                countVotes(response.data, setDataOption1, setDataOption2, setDataOption3, setDataOption4, setFinalData);
+                // Extract percentages from variables
+                const percentages = [dataOption1, dataOption2, dataOption3, dataOption4];
+                //Sort the percenatges
+                percentages.sort((a, b) => b - a);
+                console.log(percentages)
             }
             else {
                 window.alert("Unexpected error: please try again later")
@@ -23,43 +34,9 @@ const Results = () => {
         }
     };
 
-    function countVotes(data) {
-        let countDataOptions1 = 0;
-        let countDataOptions2 = 0;
-        let countDataOptions3 = 0;
-        let countDataOptions4 = 0;
-
-        for (let i = 0; i < data.length; i++) {
-            if (data[i] === 1) {
-                countDataOptions1++;
-            }
-            else if (data[i] === 2) {
-                countDataOptions2++;
-            }
-            else if (data[i] === 3) {
-                countDataOptions3++;
-            }
-            else if (data[i] === 4) {
-                countDataOptions4++;
-            }
-        }
-        const percentageOption1 = Math.round((countDataOptions1 / data.length) * 100);
-        const percentageOption2 = Math.round((countDataOptions2 / data.length) * 100);
-        const percentageOption3 = Math.round((countDataOptions3 / data.length) * 100);
-        const percentageOption4 = Math.round((countDataOptions4 / data.length) * 100);
-
-        setDataOption1(percentageOption1);
-        setDataOption2(percentageOption2);
-        setDataOption3(percentageOption3);
-        setDataOption4(percentageOption4);
-        setFinalData(data.length);
-    }
-
-
     useEffect(() => {
         getData();
     },);
-
 
     return (
         <div className="resultsPageContainer">

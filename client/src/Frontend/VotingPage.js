@@ -2,16 +2,12 @@ import React, { useEffect, useState } from "react";
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import "../FrontendDesign/VotingPage.css"
+import { submitVotes } from './SubmitVote';
 
 const VotingPage = () => {
     const [pollData, setPollData] = useState({});
     const [selectedOptions, setSelectedOptions] = useState([]);
-
-    // Navigation to results page
     const navigate = useNavigate();
-    const toResultsPage = () => {
-        navigate('../Results');
-    };
 
     // useEffect hook to fetch poll data when the component mounts
     useEffect(() => {
@@ -29,37 +25,14 @@ const VotingPage = () => {
             });
     }, []);
 
-    const submitVote = async (selectedOption) => {
-        try {
-            // Make a POST request to your backend API with the selected option
-            const response = await Axios.post('http://localhost:3003/submitVote', {
-                selectedOption,
-            });
-            // If the response is 200 success
-            if (response.status === 200) {
-                console.log(response);
-                // Add it to the local storage where the key = id
-                localStorage.setItem("id", JSON.stringify(response.data.voteData));
-                // If the vote is successfully submitted, navigate to the results page
-                toResultsPage();
-            }
-            else {
-                console.error('Failed to submit vote: please try again');
-            }
-        } catch (error) {
-            console.error('Error submitting vote', error);
-        }
-    };
-
     const handleSubmit = () => {
-        console.log(selectedOptions)
         //If the selectedOptions array is empty
         if (selectedOptions.length === 0) {
             window.alert('Select an option')
         }
         else {
             // Call the submitVote function with the selected option
-            submitVote(selectedOptions);
+            submitVotes(selectedOptions, navigate);
         }
     };
 
